@@ -8,8 +8,11 @@ var adminR = require('./routes/admin')
 var auth = require('./routes/auth');
 var userR = require('./routes/users');
 
+const db = require("./config/DBConnection");
+
 var app = express();
 
+db.connect();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
