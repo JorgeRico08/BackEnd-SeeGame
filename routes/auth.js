@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-const controllerAuth = require('../controllers/authController');
-
+const authController = require('../controllers/authController');
+const auth = new authController();
 const authenticateToken = require("../middlewares/authenticateToken");
 
 
@@ -10,17 +10,9 @@ router.get('/', function (req, res) {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/login', function(req, res, next) {
-  res.json('Inicio de sesion');
-});
+router.post('/login', auth.loginAuth.bind(auth));
 
-router.post('/login', controllerAuth.login);
-
-router.get('/registro', function(req, res, next) {
-  res.json('Inicio de sesion');
-});
-
-router.post('/registro', controllerAuth.registro);
+router.post('/registro', auth.registroAuth.bind(auth));
 
 router.get('/ruta-protegida', authenticateToken,function(req, res, next) {
   res.json('Ruta protected');
