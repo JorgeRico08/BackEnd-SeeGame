@@ -15,7 +15,8 @@ router.post('/login', auth.loginAuth.bind(auth));
 router.post('/registro', auth.registroAuth.bind(auth));
 
 router.get('/ruta-protegida', authenticateToken,function(req, res, next) {
-  res.json('Ruta protected');
+  const userData = req.userId;
+  res.json({ message: 'Ruta protegida', user: userData });
 });
 
 

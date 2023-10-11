@@ -4,8 +4,8 @@ const User = require("../models/users")
 const UsuarioDAO = require('../dao/user.dao');
 
 const generateToken = (userId) => {
-    // const token = jwt.sign({ userId }, 'tu_clave_secreta', { expiresIn: '2h' });  --- Este es para que sure 2 horas el token 
-    const token = jwt.sign({ userId }, 'tu_clave_secreta', { expiresIn: 60 }); // Como prueba esta este de 60 segundos 
+    const token = jwt.sign({ userId }, 'tu_clave_secreta', { expiresIn: '2h' }); //  --- Este es para que sure 2 horas el token 
+    // const token = jwt.sign({ userId }, 'tu_clave_secreta', { expiresIn: 60 }); // Como prueba esta este de 60 segundos 
     return token;
 };
 

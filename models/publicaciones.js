@@ -9,10 +9,13 @@ const publicacionSchema =mongoose.Schema({
         required:true,
         unique:true,
     },
-    descriocion:{
+    descripcion:{
         type: String
     },
     juegoPublicado:{
+        type: String
+    },
+    categoria:{
         type: String
     },
     date: { type: Date,
