@@ -9,4 +9,6 @@ const admin = new AdminController();
 
 router.get('/admin/adminDashboard', authenticateToken, isAdmin, admin.getDashboard.bind(admin));
 
+router.get('/admin/reportes', authenticateToken, isAdmin, admin.controlResportes.bind(admin));
+
 module.exports = router;

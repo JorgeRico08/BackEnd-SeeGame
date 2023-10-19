@@ -15,6 +15,16 @@ class AdminController {
         }
     }
 
+    async controlResportes(req, res) {
+        try{
+            const insulto = await this.adminDao.obtenerInsultos(req.userId);
+            res.json({insultos: insulto});
+        } catch(error) {
+            res.status(500).json({error: 'Error insultos no encontrados'});
+            console.log(error);
+        }
+    }
+
 }
 
 module.exports = AdminController;

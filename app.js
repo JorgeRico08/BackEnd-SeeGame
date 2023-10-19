@@ -23,6 +23,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Configuración de CORS
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*'); // 'http://localhost:8080, http://10.0.2.2:52391, http://localhost:3000'
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
+
 app.use(auth);
 app.use(adminR);
 app.use(userR);
