@@ -13,6 +13,16 @@ class UsuarioDAO {
         }
     }
 
+    async obtenerEmail(email){
+      try{
+          const user = await User.findOne({email});
+          return user;
+      }catch (error){
+          console.log(error);
+          throw new Error('Error al obtener el usuario');
+      }
+  }
+
     async obtenerUsuarioID(id){
       try{
           const user = await User.findOne(id);

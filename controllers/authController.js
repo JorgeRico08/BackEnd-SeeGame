@@ -18,8 +18,13 @@ class authController {
         try {
             const { username, email, password, nombre, apellido} = req.body;
             const existingUser = await this.userDao.obtenerUsuario(username);
+            const existingEmail = await this.userDao.obtenerEmail(email);
             if (existingUser) {
               return res.status(400).json({ error: 'El usuario ya existe' });
+            }
+
+            if (existingEmail){
+                return res.status(200).json({ error: 'El correo ya esta registrado' });
             }
             const hashedPassword = await bcrypt.hash(password, 10);
             const userObj = new User({
