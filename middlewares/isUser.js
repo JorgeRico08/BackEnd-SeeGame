@@ -4,7 +4,7 @@ const User = require("../models/users")
 
 const isUser = async (req, res, next) => {
     const authorizationHeader = req.headers.authorization;
-    const token = authorizationHeader.split(" ")[1];
+    const token = authorizationHeader;
 
     if (!token) {
         return res.status(401).json({ error: 'Missing token' });

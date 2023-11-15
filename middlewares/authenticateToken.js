@@ -10,7 +10,7 @@ const authenticateToken = async (req, res, next) => {
     if (!authorizationHeader) {
       return res.status(401).json({ error: 'Token no proporcionado' });
     }
-    const token = authorizationHeader.split(" ")[1];
+    const token = authorizationHeader;
 
     const userId = verifyToken(token);
 

@@ -1,3 +1,4 @@
+require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -7,6 +8,7 @@ const sesion = require('express-session');
 var adminR = require('./routes/admin')
 var auth = require('./routes/auth');
 var userR = require('./routes/users');
+const routerApi = require('./routes/api');
 
 const db = require("./config/DBConnection");
 
@@ -34,6 +36,7 @@ app.use((req, res, next) => {
 app.use(auth);
 app.use(adminR);
 app.use(userR);
+app.use("/api", routerApi);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
