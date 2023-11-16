@@ -4,6 +4,8 @@ const User = require("../models/users");
 const authenticateToken = async (req, res, next) => {
   const authorizationHeader = req.headers.authorization;
 
+  console.log(authorizationHeader)
+
 
   try {
 

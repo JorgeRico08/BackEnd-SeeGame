@@ -130,6 +130,7 @@ const getDetalleVideojuego = (req, res) => {
 // -----------------------    BUSCAR VIDEOJUEGOS
 
 const getVideojuego = (req, res) => {
+    console.log("#ENTRO")
     fetch(
         "https://api.igdb.com/v4/games/",
         {

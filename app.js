@@ -15,6 +15,7 @@ const db = require("./config/DBConnection");
 var app = express();
 
 db.connect();
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -25,11 +26,28 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(
+  sesion({
+    secret: 'secreto',
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
 // Configuración de CORS
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*'); // 'http://localhost:8080, http://10.0.2.2:52391, http://localhost:3000'
+  const allowedOrigins = ['http://localhost:3000', 'http://localhost:50629'];
+  const origin = req.headers.origin;
+
+  console.log(origin)
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.header('Access-Control-Allow-Credentials', 'true'); // Permite credenciales
+
   next();
 });
 
@@ -38,18 +56,14 @@ app.use(adminR);
 app.use(userR);
 app.use("/api", routerApi);
 
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
 
-app.use(
-  sesion({
-    secret: 'secreto',
-    resave: false,
-    saveUninitialized: false,
-  })
-);
+
 
 
 // error handler
