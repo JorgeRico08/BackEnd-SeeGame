@@ -141,6 +141,7 @@ const getVideojuego = (req, res) => {
                 'Authorization': process.env.AUTHORIZATION_API,
             },
             body: "fields name;"
+            + "limit 50;"
         })
         .then(response => response.json())
         .then(dataAll => {
@@ -265,6 +266,7 @@ const getEventos = (req, res) => {
                 'Authorization': process.env.AUTHORIZATION_API,
             },
             body: "fields name;"
+            + "limit 50;"
         })
         .then(response => response.json())
         .then(dataAll => {
