@@ -1,6 +1,6 @@
 var express = require('express');
 const Ultis = require("../class/Ultils");
-
+const fetch = require('node-fetch');
 const getScreenshots = async (idsScreenshots) => {
     return data = await fetch(
         "https://api.igdb.com/v4/screenshots",
@@ -176,7 +176,7 @@ const getVideojuegoNombre = (req, res) => {
             },
             body: "fields name;"
                 + "where name ~ *\"" + sNombre + "\"*;"
-                + "limit 5;"
+                + "limit 35;"
         })
         .then(response => response.json())
         .then(dataAll => {
