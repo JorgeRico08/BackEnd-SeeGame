@@ -1,30 +1,37 @@
 const mongoose = require('mongoose');
-const comentarioSchema =mongoose.Schema({
-    user: {
+const comentarioSchema = mongoose.Schema({
+    idPublicacion: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "users"
+        required: true
+    },
+    user: {
+        type: String,
+        required: true
     },
     comentario: {
         type: String,
-        required:true
+        required: true
     },
-    valoracion:{
-        type:Number,
-        min:0,
-        max:5
-    },
-    date: { 
-        type: Date,
-        require: true,
-        default: Date.now()
+    date: {
+        type: String,
+        default: function () {
+            const currentDate = new Date();
+            return currentDate.toLocaleString('es-ES', {
+                day: 'numeric',
+                month: 'numeric',
+                year: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+            });
+        },
     },
     isActive: {
         type: Boolean,
-        required: true,
         default: true
-    }, 
-   
+    },
+
 });
 
-const Comentario= mongoose.model("comentarios",comentarioSchema)
-module.exports=Comentario;
+const Comentario = mongoose.model("comentarios", comentarioSchema)
+module.exports = Comentario;

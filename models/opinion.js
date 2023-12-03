@@ -1,27 +1,15 @@
 const mongoose = require('mongoose');
-const publicacionSchema =mongoose.Schema({
-    userid: {
+const opinionSchema = mongoose.Schema({
+    user: {
         type: String,
+        required: true
     },
-    nickname:{
-        type:String,
-        required:true,
-    },
-    nombrePublicacion:{
-        type:String,
-        required:true,
-        unique:false
-    },
-    descripcion:{
+    opinion: {
         type: String,
-        required:true,
-    },
-    urlImagen:{
-        type: [String]
+        required: true
     },
     date: {
         type: String,
-        required: true,
         default: function () {
             const currentDate = new Date();
             return currentDate.toLocaleString('es-ES', {
@@ -34,7 +22,8 @@ const publicacionSchema =mongoose.Schema({
             });
         },
     }
+
 });
 
-const Publicacion= mongoose.model("publicacion",publicacionSchema)
-module.exports=Publicacion;
+const Opinion = mongoose.model("opinion", opinionSchema)
+module.exports = Opinion;

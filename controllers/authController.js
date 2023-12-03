@@ -3,8 +3,8 @@ const bcrypt = require('bcrypt');
 const User = require("../models/users")
 const UsuarioDAO = require('../dao/user.dao');
 
-const generateToken = (userId) => {
-    const token = jwt.sign({ userId }, 'tu_clave_secreta', { expiresIn: '2h' }); //  --- Este es para que sure 2 horas el token 
+const generateToken = (userId, username) => {
+    const token = jwt.sign({ userId, username }, 'tu_clave_secreta', { expiresIn: '2h' }); //  --- Este es para que sure 2 horas el token 
     // const token = jwt.sign({ userId }, 'tu_clave_secreta', { expiresIn: 60 }); // Como prueba esta este de 60 segundos 
     return token;
 };
@@ -58,7 +58,7 @@ class authController {
             if (user.isActive == false) {
                 return res.status(401).json({ error: 'Usuario desactivado' });
             }
-            const token = generateToken(user._id);
+            const token = generateToken(user._id,  username);
             res.json({ token });
         } catch (error) {
             res.status(500).json({ error: 'Error al iniciar sesión' });

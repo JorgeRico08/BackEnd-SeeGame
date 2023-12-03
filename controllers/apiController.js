@@ -91,7 +91,6 @@ const getDetalleVideojuego = (req, res) => {
         })
         .then(response => response.json())
         .then(async (data) => {
-            console.log("DATA:", data);
             if (data[0]["screenshots"]) {
                 data[0]["screenshots"].forEach(element => {
                     idsScreenshots += element + ",";
@@ -130,7 +129,6 @@ const getDetalleVideojuego = (req, res) => {
 // -----------------------    BUSCAR VIDEOJUEGOS
 
 const getVideojuego = (req, res) => {
-    console.log("#ENTRO")
     fetch(
         "https://api.igdb.com/v4/games/",
         {
@@ -218,8 +216,6 @@ const getDetalleEvento = (req, res) => {
         })
         .then(response => response.json())
         .then(async (data) => {
-            console.log("DATA:", data);
-
             try {
                 if (data[0]["videos"]) {
                     data[0]["videos"].forEach(element => {
@@ -301,7 +297,7 @@ const getEventoNombre = (req, res) => {
             },
             body: "fields name;"
                 + "where name ~ *\"" + sNombre + "\"*;"
-                + "limit 5;"
+                + "limit 30;"
         })
         .then(response => response.json())
         .then(dataAll => {
