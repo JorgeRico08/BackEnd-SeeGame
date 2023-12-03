@@ -120,7 +120,7 @@ class UserController {
             // Actualiza la imagen de la publicación por el ID
             const publicacionActualizada = await Publi.findByIdAndUpdate(
                 idPublicacion,
-                { $set: { urlImagen: urlsImagenes } },
+                { $set: { urlImagen: JSON.parse(urlsImagenes) } },
                 { new: true } // Devuelve el documento actualizado
             );
     
