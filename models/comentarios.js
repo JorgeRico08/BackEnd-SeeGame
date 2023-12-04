@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const comentarioSchema = mongoose.Schema({
     idPublicacion: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: String,
         required: true
     },
     user: {
